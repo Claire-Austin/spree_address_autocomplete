@@ -2,4 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree:
+    address_autocomplete:
+      address_autocomplete_heading: Address Autocomplete
+      api_key: Api Key
+      successfully_updated: Api Key Updated Successfully
