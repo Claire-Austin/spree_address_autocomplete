@@ -73,11 +73,3 @@ bundle exec gem release
 ```
 
 For more options please see [gem-release REAMDE](https://github.com/svenfuchs/gem-release)
-
-## Contributing
-
-If you'd like to contribute, please take a look at the
-[instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
-pull request.
-
-Copyright (c) 2024 [name of extension creator], released under the New BSD License
