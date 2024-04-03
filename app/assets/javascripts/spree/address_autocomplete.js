@@ -38,10 +38,11 @@ function fillInAddress(autocomplete, inputId) {
 
   const addressInput = document.getElementById(inputId);
   const prefix = inputId === 'b_autocomplete' ? 'order_bill_address_attributes_' : 'order_ship_address_attributes_';
+  const adminprefix = inputId === 'b_autocomplete' ? 'user_bill_address_attributes_' : 'user_ship_address_attributes_';
 
-  const cityInput = document.getElementById('address_city') || document.getElementById(prefix + 'city');
-  const zipcodeInput = document.getElementById('address_zipcode') || document.getElementById(prefix + 'zipcode');
-  const countryDropdown = document.getElementById('address_country_id') || document.getElementById(prefix + 'country_id');
+  const cityInput = document.getElementById(adminprefix + 'city') || document.getElementById('address_city') || document.getElementById(prefix + 'city');
+  const zipcodeInput = document.getElementById(adminprefix + 'zipcode') || document.getElementById('address_zipcode') || document.getElementById(prefix + 'zipcode');
+  const countryDropdown = document.getElementById(adminprefix + 'country_id') || document.getElementById('address_country_id') || document.getElementById(prefix + 'country_id');
 
   addressInput.value = address;
   cityInput.value = city;
@@ -49,7 +50,7 @@ function fillInAddress(autocomplete, inputId) {
 
   selectOptionByText(countryDropdown, country);
 
-  const stateDropdown = document.getElementById('address_state_id') || document.getElementById(prefix + 'state_id');
+  const stateDropdown = document.getElementById(adminprefix + 'state_id') || document.getElementById('address_state_id') || document.getElementById(prefix + 'state_id');
 
   selectOptionByText(stateDropdown, state);
 }
