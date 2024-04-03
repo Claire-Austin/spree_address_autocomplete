@@ -1,6 +1,13 @@
-# SpreeAddressAutocomplete
+# Spree Address Autocomplete
 
-Introduction goes here.
+Spree Address Autocomplete is a convenient extension for the Spree Commerce platform, designed to enhance the user experience by providing address autocomplete functionality. With this extension, users can effortlessly fill in address details during checkout, account creation, or while creating orders and customers from the admin panel.
+
+## Features
+
+- **Google Places API Integration**: Utilizes Google Places API to suggest related addresses as users begin filling in their address details.
+- **Automatic Field Population**: Automatically fills in related address fields such as city, state, zip code, and country based on the selected address suggestion.
+- **Flipper Ability**: Offers the flexibility to toggle integration on or off as per your preferences or requirements.
+
 
 ## Installation
 
@@ -25,6 +32,22 @@ Introduction goes here.
 4. Restart your server
 
   If your server was running, restart it so that it can find the assets properly.
+
+
+## Configuration
+To enable this integration:
+1. Navigate to the integrations page in your store's settings, create an integration for this extension, and enable it to activate the functionality seamlessly.
+2. Configure the Google Places API key for the Spree Address Autocomplete Extension.
+3. Once configured, the integration will be enabled and ready to use.
+
+
+## Usage
+Once the extension is installed and configured, users can start experiencing the benefits of address autocomplete across various areas of your Spree Commerce platform, including:
+
+- **Checkout Proces**: Address autocomplete simplifies the checkout process by suggesting and populating address fields as users begin typing.
+- **Account Creation**: Enhance user registration and account creation by streamlining address input.
+- **Customer and Order Management**: Simplify the process of creating and updating customer or order details directly from the admin panel with the assistance of address autocomplete.
+  
 
 ## Testing
 
