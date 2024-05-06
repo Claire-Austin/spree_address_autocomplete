@@ -7,7 +7,7 @@
     <div class="col-6">
       <%= f.field_container :api_key do %>
         <%= f.label :api_key, Spree.t(:api_key, scope: :address_autocomplete) %>
-        <%= f.password_field :api_key, class: 'form-control mt-2' %>
+        <%= f.text_field :api_key, class: 'form-control mt-2' %>
       <% end %>
     </div>
   </div>
