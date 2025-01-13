@@ -8,8 +8,8 @@ module SpreeAddressAutocomplete
     config.generators do |g|
       g.test_framework :rspec
     end
-
-    initializer 'spree_address_autocomplete.environment', before: :load_config_initializers do |_app|
+    
+    config.after_initialize do
       SpreeAddressAutocomplete::Config = SpreeAddressAutocomplete::Configuration.new
     end
 

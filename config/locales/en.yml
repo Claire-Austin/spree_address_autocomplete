@@ -3,6 +3,7 @@
 
 en:
   spree:
+    address_autocomplete_settings: Address Autocomplete Settings
     address_autocomplete:
       address_autocomplete_heading: Address Autocomplete
       api_key: Api Key

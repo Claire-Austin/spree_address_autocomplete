@@ -1,4 +1,4 @@
-<% if Flipper.enabled?(:address_autocomplete, current_store.try(:id)) && current_store.address_autocomplete.present? %>
+<% if current_store.address_autocomplete.present? %>
   <script src= "https://maps.googleapis.com/maps/api/js?key=<%= current_store.address_autocomplete.api_key %>&libraries=places" defer></script>
 <% end %>
 
@@ -29,7 +29,7 @@
         </div>
         <%= error_message_on f.object, :state_id %>
       <% end %>
-    <% elsif field == "address1" && Flipper.enabled?(:address_autocomplete, current_store.try(:id)) %>
+    <% elsif field == "address1" %>
       <%= field_container (s_or_b + '_' + field), nil, class: ["#{type}-row"] do %>
         <%= f.label field, Spree.t(field) %>
         <%= f.text_field field, class: 'form-control', id: "#{s_or_b}_autocomplete", placeholder: 'Search for your address...', onclick: "initAutocomplete('#{s_or_b}_autocomplete')" %>

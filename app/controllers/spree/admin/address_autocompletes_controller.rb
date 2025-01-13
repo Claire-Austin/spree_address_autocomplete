@@ -1,7 +1,6 @@
 module Spree
   module Admin
-    class AddressAutocompletesController < Spree::Admin::BaseController
-      include EnsureAddressAutocomplete
+    class AddressAutocompletesController < BaseController
 
       before_action :find_address_autocomplete, only: [:edit, :update]
 

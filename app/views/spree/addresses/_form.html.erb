@@ -1,4 +1,4 @@
-<% if Flipper.enabled?(:address_autocomplete, current_store.try(:id)) && current_store.address_autocomplete.present? %>
+<% if current_store.address_autocomplete.present? %>
   <script src= "https://maps.googleapis.com/maps/api/js?key=<%= current_store.address_autocomplete.api_key %>&libraries=places" defer></script>
 <% end %>
 
@@ -24,7 +24,7 @@
     <div class="form-group mb-4">
       <%= address_field(address_form, :zipcode, address_id) { address_zipcode(address_form, address.country, address_id) } %>
     </div>
-  <% elsif field == "address1" && Flipper.enabled?(:address_autocomplete, current_store.try(:id)) %>
+  <% elsif field == "address1" %>
     <div class="form-group mb-4">
       <div class="form-group checkout-content-inner-field has-float-label">
         <%= address_form.text_field :address1, class: 'spree-flat-input', id: "#{address_id}_autocomplete", type: 'text', placeholder: 'Search for your address...', onclick: "initAutocomplete('#{address_id}_autocomplete')" %>
