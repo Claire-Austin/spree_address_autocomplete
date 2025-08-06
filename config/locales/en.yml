@@ -5,6 +5,7 @@ en:
   spree:
     address_autocomplete_settings: Address Autocomplete Settings
     address_autocomplete:
+      address_autocomplete: Address Autocomplete
       address_autocomplete_heading: Address Autocomplete
       api_key: Api Key
       successfully_updated: Api Key Updated Successfully

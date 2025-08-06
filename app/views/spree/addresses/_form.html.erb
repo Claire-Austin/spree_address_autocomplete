@@ -1,23 +1,21 @@
-<% if current_store.address_autocomplete.present? %>
-  <script src= "https://maps.googleapis.com/maps/api/js?key=<%= current_store.address_autocomplete.api_key %>&libraries=places" defer></script>
+<% if (address_autocomplete = Spree::AddressAutocomplete.first).present? && address_autocomplete.api_key.present? %>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=<%= address_autocomplete.api_key %>&libraries=places&callback=initMap"></script>
+  <script>
+    function initMap() {
+      console.log('Google Maps API loaded successfully');
+    }
+  </script>
 <% end %>
 
 <% address_id = address_type.chars.first %>
 
-<% Spree::Address::ADDRESS_FIELDS.each do |field| %>
+<% Spree::Address::CUSTOM_ADDRESS_FIELDS.each do |field| %>
   <% if field == "country" %>
     <div class="form-group checkout-content-inner-field" id="<%= "#{address_id}country" %>">
-      <div id="<%= "#{address_id}country-selection" %>" class="d-block position-relative has-float-label">
-        <%= address_form.collection_select :country_id, available_countries, :id, :name,
-                                           { prompt: Spree.t(:country).upcase },
-                                           { class: 'form-control spree-flat-select',
-                                             aria: { label: Spree.t(:country) } } %>
-        <%= image_tag 'arrow.svg', class: 'position-absolute spree-flat-select-arrow' %>
-        <%= address_form.label(Spree.t(:country), Spree.t(:country).upcase, class:'text-uppercase') %>
-      </div>
+      <%= address_form.hidden_field :country_id, value: (address.country_id.presence || 44) %>
     </div>
   <% elsif field == "state" %>
-    <div class="form-group mb-4">
+    <div class="form-group mb-4" style="width: 15rem;">
       <%= address_field(address_form, :state, address_id) { address_state(address_form, address.country, address_id) } if Spree::Config[:address_requires_state] %>
     </div>
   <% elsif field == "zipcode" %>
@@ -27,17 +25,34 @@
   <% elsif field == "address1" %>
     <div class="form-group mb-4">
       <div class="form-group checkout-content-inner-field has-float-label">
-        <%= address_form.text_field :address1, class: 'spree-flat-input', id: "#{address_id}_autocomplete", type: 'text', placeholder: 'Search for your address...', onclick: "initAutocomplete('#{address_id}_autocomplete')" %>
+        <%= address_form.text_field :address1,
+            class: 'spree-flat-input autocomplete-input',
+            id: "#{address_id}_autocomplete",
+            type: 'text',
+            placeholder: 'Search for your address...',
+            autocomplete: 'off',
+            data: {
+              'autocomplete-target' => "#{address_id}",
+              'address-type' => address_id
+            } %>
         <%= address_form.label(:address1, "address #{Spree.t(:required)}", class: 'text-uppercase') %>
       </div>
     </div>
   <% else %>
     <% next if field == "company" && !Spree::Config[:company] %>
     <% next if field == "alternative_#{address_id}_phone" && !Spree::Config["alternative_#{address_id}_phone"] %>
-    <div class="form-group mb-4">
+
+    <% style = (field == "city" || field == "state_name") ? 'width: 15rem;' : '' %>
+    <div class="form-group mb-4" style="<%= style %>">
       <%= address_field(address_form, field.to_sym, address_id) %>
+      <% if field == "lastname" %>
+        <br><br>
+      <% end %>
     </div>
   <% end %>
 <% end %>
 
-<p class="text-right text-uppercase mb-5 checkout-content-inner-field"><span id="required_marker"><%= Spree.t(:required) %></span> <%= Spree.t(:required_fields) %></p>
+<p class="text-right text-uppercase mb-5 checkout-content-inner-field">
+  <span id="required_marker"><%= Spree.t(:required) %></span>
+  <%= Spree.t(:required_fields) %>
+</p>

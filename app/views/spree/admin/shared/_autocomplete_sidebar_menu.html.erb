@@ -1,0 +1,3 @@
+<%= configurations_sidebar_menu_item(
+    Spree.t("spree.address_autocomplete"), spree.edit_admin_address_autocomplete_path
+  ) if can? :manage, Spree::Config %>
