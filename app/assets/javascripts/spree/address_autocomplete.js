@@ -5,7 +5,7 @@ async function initAutocomplete(inputId) {
 
   const autocomplete = new google.maps.places.Autocomplete(input, {
     types: ['address'],
-    componentRestrictions: { country: ['us', 'ca'] }, // Adjust as needed
+    componentRestrictions: {}, // Adjust as needed
     fields: ['address_components', 'formatted_address', 'geometry']
   });
 
