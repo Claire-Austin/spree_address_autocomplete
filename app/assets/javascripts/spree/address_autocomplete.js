@@ -2,12 +2,17 @@ async function initAutocomplete(inputId) {
   const { Place } = await google.maps.importLibrary("places");
 
   const input = document.getElementById(inputId);
+  input.setAttribute("autocomplete", "new-password");
 
   const autocomplete = new google.maps.places.Autocomplete(input, {
     types: ['address'],
     componentRestrictions: {}, // Adjust as needed
     fields: ['address_components', 'formatted_address', 'geometry']
   });
+
+  setTimeout(() => {
+    input.setAttribute("autocomplete", "new-password");
+  }, 100);
 
   autocomplete.addListener('place_changed', () => fillInAddress(autocomplete, inputId));
 }
